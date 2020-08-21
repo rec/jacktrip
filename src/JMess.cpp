@@ -78,7 +78,7 @@ JMess::~JMess()
  *
  */
 //-------------------------------------------------------------------------------
-void JMess::writeOutput(QString xmlOutFile)
+void JMess::writeOutput(QString /* xmlOutFile */)
 {
     //  QDomDocument jmess_xml;   QDomElement root;
     //  QDomElement connection;   QDomElement output;
@@ -177,7 +177,7 @@ void JMess::connectSpawnedPorts(int nChans, int hubPatch)
     QString IPS[gMAX_WAIRS];
     int ctr = 0;
 
-    const char **ports, **connections; //vector of ports and connections
+    const char **ports; //vector of ports
     QVector<QString> OutputInput(2); //helper variable
 
     //Get active output ports.
@@ -388,7 +388,7 @@ void JMess::disconnectAll()
  * read the file.
  */
 //-------------------------------------------------------------------------------
-int JMess::parseXML(QString xmlInFile)
+int JMess::parseXML(QString /* xmlInFile */)
 {
     //  mPortsToConnect.clear();
     //  QString errorStr;
@@ -455,7 +455,7 @@ int JMess::parseXML(QString xmlInFile)
  *
  */
 //-------------------------------------------------------------------------------
-void JMess::connectPorts(QString xmlInFile)
+void JMess::connectPorts(QString /* xmlInFile */)
 {
     QVector<QString> OutputInput(2);
 
@@ -478,4 +478,3 @@ void JMess::connectPorts(QString xmlInFile)
     //  }
 
 }
-

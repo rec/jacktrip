@@ -346,5 +346,5 @@ void JamLinkHeader::fillHeaderCommonFromAudio()
 //#######################################################################
 //***********************************************************************
 EmptyHeader::EmptyHeader(JackTrip* jacktrip) :
-    PacketHeader(jacktrip), mJackTrip(jacktrip)
+    PacketHeader(jacktrip)
 {}

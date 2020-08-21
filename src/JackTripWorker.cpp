@@ -61,9 +61,9 @@ using std::cout; using std::endl;
 JackTripWorker::JackTripWorker(UdpHubListener* udpmasterlistener, int BufferQueueLength, JackTrip::underrunModeT UnderRunMode) :
     mUdpHubListener(udpmasterlistener),
     m_connectDefaultAudioPorts(false),
-    mBufferQueueLength(BufferQueueLength),
-    mUnderRunMode(UnderRunMode),
     mSpawning(false),
+    mUnderRunMode(UnderRunMode),
+    mBufferQueueLength(BufferQueueLength),
     mID(0),
     mNumChans(1)
   #ifdef WAIR // wair

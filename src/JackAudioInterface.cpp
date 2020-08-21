@@ -77,11 +77,8 @@ JackAudioInterface::JackAudioInterface(JackTrip* jacktrip,
     #ifdef WAIR // WAIR
     mNumNetRevChans(NumNetRevChans),
     #endif // endwhere
-    //mAudioBitResolution(AudioBitResolution*8),
-    mBitResolutionMode(AudioBitResolution),
     mClient(NULL),
-    mClientName(ClientName),
-    mJackTrip(jacktrip)
+    mClientName(ClientName)
 {}
 
 

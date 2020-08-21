@@ -170,8 +170,6 @@ private:
     int mNumNetRevChans; ///<  Number of Network Audio Channels (network comb filters
 #endif // endwhere
     int mNumFrames; ///< Buffer block size, in samples
-    //int mAudioBitResolution; ///< Bit resolution in audio samples
-    AudioInterface::audioBitResolutionT mBitResolutionMode; ///< Bit resolution (audioBitResolutionT) mode
 
     jack_client_t* mClient; ///< Jack Client
     const char* mClientName; ///< Jack Client Name
@@ -179,9 +177,7 @@ private:
     QVarLengthArray<jack_port_t*> mOutPorts; ///< Vector of Output Ports (Channels)
     QVarLengthArray<sample_t*> mInBuffer; ///< Vector of Input buffers/channel read from JACK
     QVarLengthArray<sample_t*> mOutBuffer; ///< Vector of Output buffer/channel to write to JACK
-    size_t mSizeInBytesPerChannel; ///< Size in bytes per audio channel
     QVector<ProcessPlugin*> mProcessPlugins; ///< Vector of ProcesPlugin<EM>s</EM>
-    JackTrip* mJackTrip; ///< JackTrip mediator class
     static QMutex sJackMutex; ///< Mutex to make thread safe jack functions that are not
 };
 

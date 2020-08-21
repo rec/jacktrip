@@ -51,7 +51,7 @@
 #include <winsock2.h> //cc need SD_SEND
 #include <ws2tcpip.h> // for IPv6
 #endif
-#if defined (__LINUX__) || (__MAC_OSX__)
+#if defined (__LINUX__) || defined(__MAC_OSX__)
 #include <sys/socket.h> // for POSIX Sockets
 #endif
 
@@ -80,7 +80,7 @@ UdpDataProtocol::UdpDataProtocol(JackTrip* jacktrip, const runModeT runmode,
     std::memset(&mPeerAddr6, 0, sizeof(mPeerAddr6));
     mPeerAddr.sin_port = htons(mPeerPort);
     mPeerAddr6.sin6_port = htons(mPeerPort);
-    
+
     if (mRunMode == RECEIVER) {
         QObject::connect(this, SIGNAL(signalWaitingTooLong(int)),
                          jacktrip, SLOT(slotUdpWaitingTooLongClientGoneProbably(int)), Qt::QueuedConnection);
@@ -101,7 +101,7 @@ UdpDataProtocol::~UdpDataProtocol()
 void UdpDataProtocol::setPeerAddress(const char* peerHostOrIP)
 {
     // Get DNS Address
-#if defined (__LINUX__) || (__MAC_OSX__)
+#if defined (__LINUX__) || defined(__MAC_OSX__)
     //Don't make the following code conditional on windows
     //(Addresses a weird timing bug when in hub client mode)
     if (!mPeerAddress.setAddress(peerHostOrIP)) {
@@ -113,7 +113,7 @@ void UdpDataProtocol::setPeerAddress(const char* peerHostOrIP)
         }
         //cout << "UdpDataProtocol::setPeerAddress IP Address Number: "
         //    << mPeerAddress.toString().toStdString() << endl;
-#if defined (__LINUX__) || (__MAC_OSX__)
+#if defined (__LINUX__) || defined(__MAC_OSX__)
     }
 #endif
 
@@ -275,7 +275,7 @@ int UdpDataProtocol::bindSocket()
         // a different address. While this generally won't be a problem for IPv4, it will for IPv6.)
         if ( (::connect(sock_fd, (struct sockaddr *) &mPeerAddr, sizeof(mPeerAddr))) < 0)
         { throw std::runtime_error("ERROR: Could not connect UDP socket"); }
-#if defined (__LINUX__) || (__MAC_OSX__)
+#if defined (__LINUX__) || defined(__MAC_OSX__)
         //if ( (::shutdown(sock_fd,SHUT_WR)) < 0)
         //{ throw std::runtime_error("ERROR: Could shutdown SHUT_WR UDP socket"); }
 #endif

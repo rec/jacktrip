@@ -287,9 +287,6 @@ public:
     virtual uint8_t  getPeerConnectionMode(int8_t* /*full_packet*/) const { return 0; }
 
     virtual void putHeaderInPacket(int8_t* /*full_packet*/) {}
-
-private:
-    JackTrip* mJackTrip; ///< JackTrip mediator class
 };
 
 
