@@ -100,7 +100,7 @@ public:
    * This function makes sure we recieve a complete packet
    * of size n
    * \param buf Buffer to store the recieved packet
-   * \param n size of packet to receive
+   * \param n minimum size of packet to receive.
    * \return number of bytes read, -1 on error
    */
     //virtual int receivePacket(char* buf, const size_t n);
