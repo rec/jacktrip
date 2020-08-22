@@ -1,4 +1,7 @@
-# How to use Git for JackTrip development
+# Setting up to use Git for JackTrip development
+
+These instructions are for Unix-like systems - they might work also on Cygwin
+on Windows.
 
 ## A. Forking the JackTrip GitHub repository
 
@@ -53,7 +56,7 @@
 
 1. Now you have decided between `https` or `ssh`, you're going to _clone_
     your fork, which means making a copy of its current state into a directory
-    on your computer.
+    on your computer.  Usually you only do this once per machine.
 
 2. Go to the Github page for the personal fork of jacktrip that you
     arrived at in step A.6 above.
@@ -66,32 +69,24 @@
     little clipboard on the right to copy the URL of your fork of JackTrip to
     your clipboard.
 
-5. Now open a terminal and navigate to the directory in which you want to
+5. Now open a command line and navigate to the directory in which you want to
    create the project.
 
-6. Type `git clone ` ending with a space and then paste the github URL and
-    press return.
+6. Type `git clone ` ending with a space, then paste the github URL
+    from the clipboard - then press return to clone the fork.
 
 7. This creates a directory called `jacktrip` in the current directory.
     You'll do all your work here.
 
-8.  Now type `cd jacktrip` and enter that directory.
+8.  Now run `cd jacktrip` to enter that directory.
 
-9.
+9. There is a script named `documentation/add-git-remotes.sh` that  adds git
+    remotes for other people who are also working on JackTrip:
 
+       # Depending on your authentication type (see section B), either
 
+       documentation/git/add-remotes.sh ssh
 
+       # or
 
-
-
-
-
-Next, you need to create a directory on your local disk to work from.
-
-
-
-
-
-
-2. This document pretends your Github user name is `wombat` - whenever you see
-    `wombat`, replace it with your actual user name.
+       documentation/git/add-remotes.sh https

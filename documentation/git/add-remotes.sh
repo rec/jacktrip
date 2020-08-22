@@ -1,12 +1,18 @@
 #!/bin/bash
-
-# https://gist.github.com/mohanpedala/1e2ff5661761d3abd0385e8223e16425
 set -eo pipefail
 
 usage() {
     echo "USAGE: add-git-remotes.sh https | ssh"
     exit 1
 }
+
+if [ ! $1 ]; then
+    usage
+elif [ $1 == "https" -o $1 == "ssh" ] ; then
+    MODE=$1
+else
+    usage
+fi
 
 add_remote() {
     remote=$1
@@ -22,22 +28,15 @@ add_remote() {
     fi
 
     echo "$ git remote add $remote $url"
-    git remote add $remote $url
+    # git remote add $remote $url
 }
 
 add_remotes() {
-    add_remote upstream jacktrip
+    add_remote upstream jacktrip  # FAILS!
+
     for remote in $@ ; do
         add_remote $remote
     done
 }
 
-if [ ! $1 ]; then
-    usage
-elif [ $1 == "https" -o $1 == "ssh" ] ; then
-    MODE=$1
-else
-    usage
-fi
-
-add_remotes antonrunov ntonnaett rec
+add_remotes antonrunov jacktrip ntonnaett rec
