@@ -1,3 +1,6 @@
 # QtCreator user files
 *.pro.user
 *.pro.user.*
+
+# Directory for generate files and binaries
+builddir/
