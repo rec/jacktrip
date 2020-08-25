@@ -10,7 +10,7 @@ else
 fi
 
 if [[ -z $2 ]]; then
-    source_branch=jacktrip/jacktrip
+    source_branch=jacktrip/dev
 else
     source_branch=$2
 fi

@@ -6,6 +6,7 @@
 
 Type `git --version`.  If your version is less than 2.23.0, see Appendix A.
 
+
 ### Some definitions
 
 The local directory where you work is called the **repository** or **repo**.
@@ -23,36 +24,25 @@ many branches as you like and they are completely independent.
 New branches are usually based on the branch `jacktrip/dev`, which we call
 the **dev branch**.
 
-
-
 ## A. Check out a fresh branch for new work
 
-    git status  # If there is anything here DO NOT CONTINUE
+You should get used to creating a new branch
+
+    git status  # If there is anything here *do not continue*
 
     git switch -c <my-branchname>
     git fetch jacktrip/dev
     git reset --hard jacktrip/dev
     git push -u origin <my-branchname>
 
-This is the hardest step.  I have a bash function which reduces the last four
-steps to a single command.
+Ah, sorry!  Everything else is a one- or two-liner.
 
-* `git status` lets you check to see you don't have any edited or untracked
-  files - files that git doesn't know about.  It's possible to destroy work
-  that way.
-* `git switch` creates a new branch local to your repository. The original
-  branch is unchanged.
-* `git fetch` brings the contents of the current dev branch into your
-  repository.
-* `git reset --hard` throws away the current contents of this branch and
-  replaces them with the dev branch
-  * `git reset --hard` is dangerous! But here it's OK because all your work is
-    stored on the original branch
-* `git push` pushes this new branch to your fork, named `origin`; `-u` means
-  you won't have to type `origin` when you `git push` in future.
+This one is a bit longer because you need to create the branch and then
+overwrite it with the most recent dev branch _and_ this needs to work even if
+your local branch or your fork are hopelessly out-of-date
 
-
-
+ This bash script `git-new` can do it for you in one command if you put it in
+your path somewhere.
 
 ## B. Creating a new commit
 

@@ -24,7 +24,7 @@ add_remote() {
     if [ $MODE == "https" ]; then
         url=https://github.com/$user/jacktrip.git
     else
-        url=git@github.com:$remote/jacktrip.git
+        url=git@github.com:$user/jacktrip.git
     fi
 
     git remote remove $1 2>/dev/null || true
