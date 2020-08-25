@@ -1,74 +1,60 @@
 # Git cheatsheet
 
-https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+## Before you start
 
-## Before you start 1: check your git version!
+### Check your version
 
-Go to your terminal and type:
+Type `git --version`.  If your version is less than 2.23.0, see Appendix A.
 
-    git --version
+### Some definitions
 
-If the git version is _earlier_ than 2.23.0, strongly consider updating.  The
-current version, 2.26.0, is good.
+The local directory where you work is called the **repository** or **repo**.
 
-Git 2.23.0
-[introduced](https://www.infoq.com/news/2019/08/git-2-23-switch-restore/) two
-new commands, `git switch` and `git restore` that completely replace the
-horrible confusing dangerous old `git checkout`.
+You have remote repository on github, your fork of JackTrip.
+This is called the **origin**.  When you push branches, this is where they
+get pushed to.
 
-I'm going to use those two new commands everywhere here, and then I'll have an
-appendix where I explain it for people who cannot update.
+The central JackTrip repository also lives on github, and it's called the
+**upstream**. (These names are Git-standard, not mine.)
 
-## Before you start 2: your text editor
+All the work you do is in branches in your local repository.  You can have as
+many branches as you like and they are completely independent.
 
-Several git commands such as `git-commit` and `git-rebase` will in some case
-bring up your text editor
-
-## Before you start 3: useful git configuration values
-
-There's a whole collection of useful settings of global git configur
-configuration values
-
-I have a collection of
-
-## Before you start 3: gitz
-
-I have a collection of
+New branches are usually based on the branch `jacktrip/dev`, which we call
+the **dev branch**.
 
 
-## A. Checking out a fresh branch for new work
 
-Suppose the new branch is called `cage`.
+## A. Check out a fresh branch for new work
 
-    # Check to make sure you aren't overwriting changes
-    git status
+    git status  # If there is anything here DO NOT CONTINUE
 
-    # Create the new branch local to this repository
-    git switch -c cage
-
-    # Fetch the development branch
+    git switch -c <my-branchname>
     git fetch jacktrip/dev
-
-    # Hard-reset the state of this new branch cage
-    # to be the development branch.
-    #
-    # git reset --hard is dangerous;  here it's OK, because
-    # you have done no work on this branch.
     git reset --hard jacktrip/dev
+    git push -u origin <my-branchname>
 
-    # Now push your branch to your fork on github.com
-    # and set the local branch to track it.
-    git push -u origin cage
+This is the hardest step.  I have a bash function which reduces the last four
+steps to a single command.
 
-    # "Tracking" means that the next time you need to push, you can
-    # just type `git push`
+* `git status` lets you check to see you don't have any edited or untracked
+  files - files that git doesn't know about.  It's possible to destroy work
+  that way.
+* `git switch` creates a new branch local to your repository. The original
+  branch is unchanged.
+* `git fetch` brings the contents of the current dev branch into your
+  repository.
+* `git reset --hard` throws away the current contents of this branch and
+  replaces them with the dev branch
+  * `git reset --hard` is dangerous! But here it's OK because all your work is
+    stored on the original branch
+* `git push` pushes this new branch to your fork, named `origin`; `-u` means
+  you won't have to type `origin` when you `git push` in future.
 
-If you have the gitz tools mentioned above, you can just do
 
-    # Create a new branch, making sure you aren't overwriting any changes
-    git new cage
 
-## B. Creating a commit
+
+## B. Creating a new commit
 
 When you commit
 
@@ -110,3 +96,12 @@ Next, you need to create a directory on your local disk to work from.
 
 2. This document pretends your Github user name is `wombat` - whenever you see
     `wombat`, replace it with your actual user name.
+
+APPENDIX: dealing with older versions.
+
+Git 2.23.0
+[introduced](https://www.infoq.com/news/2019/08/git-2-23-switch-restore/) two
+new commands, `git switch` and `git restore` that completely replace the
+old `git checkout` which did two completely unrelated things.
+
+`git checkout` isn't just confusing, you can, and I have, lost work with it.
