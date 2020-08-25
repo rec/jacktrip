@@ -1,27 +1,32 @@
+#!/bin/bash
+
+set -uxo pipefail
+
 if [[ -z $1 ]]; then
     echo 'USAGE: git-new new_branch [source_branch [repo]]'
-    return -1
+    exit -1
 else
-    local new_branch=$1
+    new_branch=$1
 fi
 
 if [[ -z $2 ]]; then
-    local source_branch=jacktrip/jacktrip
+    source_branch=jacktrip/jacktrip
 else
-    local source_branch=$2
+    source_branch=$2
 fi
 
 if [[ -z $3 ]]; then
-    local repo=origin
+    repo=origin
 else
-    local repo=$3
+    repo=$3
 fi
 
 if git diff-index --quiet HEAD --; then
-    git switch -c $new_branch && \
-        git fetch $source_branch && \
-        git reset --hard $source_branch && \
-        git push $new_branch -u $repo
+    git switch -c $new_branch
+    git fetch $source_branch
+    git reset --hard $source_branch
+    git push $new_branch -u $repo
 else
     echo 'Changes in your workspace would be overwritten'
+    exit -1
 fi
