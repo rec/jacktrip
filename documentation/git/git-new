@@ -2,9 +2,14 @@
 
 set -uxo pipefail
 
-if [[ -z $1 ]]; then
-    echo 'USAGE: git-new new_branch [source_branch [repo]]'
+usage() {
+    echo 'USAGE: git-new <new-branch> [<copy-from-branch> [<repo>]]'
+    echo
     exit -1
+}
+
+if [[ -z $1 ]]; then
+    usage
 else
     new_branch=$1
 fi

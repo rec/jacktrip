@@ -6,7 +6,6 @@
 
 Type `git --version`.  If your version is less than 2.23.0, see Appendix A.
 
-
 ### Some definitions
 
 The local directory where you work is called the **repository** or **repo**.
@@ -16,7 +15,7 @@ This is called the **origin**.  When you push branches, this is where they
 get pushed to.
 
 The central JackTrip repository also lives on github, and it's called the
-**upstream**. (These names are Git-standard, not mine.)
+**upstream** repository.
 
 All the work you do is in branches in your local repository.  You can have as
 many branches as you like and they are completely independent.
@@ -24,9 +23,17 @@ many branches as you like and they are completely independent.
 New branches are usually based on the branch `jacktrip/dev`, which we call
 the **dev branch**.
 
-## A. Check out a fresh branch for new work
+### The typical workflow for JT
 
-You should get used to creating a new branch
+1. Check out a fresh branch
+2. Make some changes and test them
+3. Organize the changes into one or more commits
+4. Push the commits to the origin
+5. Request a pull request
+6. Push some fixup commits on the end
+7. Success!
+
+## A. Check out a fresh branch for new work
 
     git status  # If there is anything here *do not continue*
 
@@ -41,10 +48,14 @@ This one is a bit longer because you need to create the branch and then
 overwrite it with the most recent dev branch _and_ this needs to work even if
 your local branch or your fork are hopelessly out-of-date
 
- This bash script `git-new` can do it for you in one command if you put it in
-your path somewhere.
+ This bash script [`git-new`][git-new] can do it for you in one command if you
+put it in your path somewhere.
 
-## B. Creating a new commit
+## B. Make some changes and test them.
+
+See [LINK TO BUILD DOCUMENTS]
+
+## B. Create a new commit
 
 When you commit
 

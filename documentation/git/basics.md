@@ -3,8 +3,8 @@
 A typical developer working on JackTrip will have to learn very little about
 git.
 
-The setup is half a dozen steps, and then there are not even a
-half dozen simple commands used nearly all the time.
+The setup is half a dozen steps. After that, then there are not even a half
+dozen simple commands used nearly all the time.
 
 ## If it's just a few commands, what is all this other stuff?
 
@@ -17,9 +17,10 @@ It's good to have instructions to deal with unusual cases.
 
 ## Do I need to learn to rebase?
 
-Git has a technique called rebasing that has a bad reputation.
+Git has a technique named rebasing that's occasionally tricky.
 
 This workflow does not require you, the reader, to learn how to rebase.
+
 Someone on the team will have to be able to rebase in some cases, but usually
 these rebases will be automatic.
 
