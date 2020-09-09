@@ -1,0 +1,22 @@
+#!/bin/bash
+set -eo pipefail
+
+usage() {
+    echo 'USAGE: git-new <new-branch>'
+    exit -1
+}
+
+if ! git diff-index --quiet HEAD --; then
+    echo 'Changes in your workspace would be overwritten'
+    exit -1
+fi
+
+if [[ -z $1 ]]; then
+    usage
+fi
+
+set -x
+
+git fetch jacktrip dev
+git checkout -b $1 jacktrip/dev
+git push -u origin $1
