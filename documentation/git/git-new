@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -uxo pipefail
 
 usage() {
@@ -7,6 +6,13 @@ usage() {
     echo
     exit -1
 }
+
+git diff-index --quiet HEAD --
+
+if [ $? -ne 0 ]; then
+    echo 'Changes in your workspace would be overwritten'
+    exit -1
+fi
 
 if [[ -z $1 ]]; then
     usage
@@ -26,12 +32,6 @@ else
     repo=$3
 fi
 
-if git diff-index --quiet HEAD --; then
-    git switch -c $new_branch
-    git fetch $source_branch
-    git reset --hard $source_branch
-    git push $new_branch -u $repo
-else
-    echo 'Changes in your workspace would be overwritten'
-    exit -1
-fi
+git fetch $source_branch
+git checkout -b $new_branch $source_branch
+git push $new_branch -u $repo
