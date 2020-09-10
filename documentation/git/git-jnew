@@ -2,8 +2,27 @@
 set -eo pipefail
 
 usage() {
-    echo 'USAGE: git-new <new-branch>'
-    exit -1
+    cat << EOF
+NAME
+    git-jnew - Create a fresh branch for jacktrip
+
+SYNOPSIS
+    git-jnew <branch> [<source> [<origin>]]
+
+DESCRIPTION
+    Create a new branch from a remote branch and push it to the origin.
+
+OPTIONS:
+    <branch>
+        Name of the new branch to create. Required.
+
+    <source>
+        Existing branch to copy from. Default is 'jacktrip/dev'.
+
+    <origin>
+        Repo to push to. Default is 'origin'.
+EOF
+    exit 1
 }
 
 if ! git diff-index --quiet HEAD --; then
@@ -11,12 +30,16 @@ if ! git diff-index --quiet HEAD --; then
     exit -1
 fi
 
+branch=${1:-}
+source=${2:-jacktrip/dev}
+origin=${3:-origin}
+
 if [[ -z $1 ]]; then
     usage
 fi
 
 set -x
 
-git fetch jacktrip dev
-git checkout -b $1 jacktrip/dev
-git push -u origin $1
+git fetch ${source//// }
+git checkout -b $branch $source
+git push -u $origin $branch
