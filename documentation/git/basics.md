@@ -21,7 +21,7 @@ these rebases will be automatic.
 
 1. Set up an account on github: github.md
 2. Set up the machine you are working on one: setting-up.md
-3. And do development: workflow.md
+3. Work: workflow.md
 4. If you like, read the "git without fear" document
 
 And that's it!
